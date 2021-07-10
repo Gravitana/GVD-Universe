@@ -1,6 +1,6 @@
 package ru.gravitana.gvd_universe
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ru.gravitana.gvd_universe.ui.main.MainFragment
 
