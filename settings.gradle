@@ -1,0 +1,2 @@
+rootProject.name = "GVD-Universe"
+include ':app'
