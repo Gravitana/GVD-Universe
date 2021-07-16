@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="heading_text_style">
+        <item name="android:textSize">@dimen/heading_size</item>
+        <item name="android:layout_marginBottom">@dimen/heading_margin_vertical</item>
+        <item name="android:padding">@dimen/heading_padding</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?colorPrimaryDark</item>
+        <item name="android:textColor">?colorAccent</item>
+    </style>
+
+
+</resources>

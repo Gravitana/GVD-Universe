@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="frame_margin">10dp</dimen>
+    <dimen name="heading_size">25sp</dimen>
+    <dimen name="heading_margin_vertical">10dp</dimen>
+    <dimen name="heading_padding">5dp</dimen>
+</resources>
