@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        setTheme(R.style.GVDUniverse_GreenTheme)
+        setTheme(R.style.GVDUniverse_GreenTheme)
 
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
