@@ -12,14 +12,13 @@ import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.Chip
-import kotlinx.android.synthetic.main.fragment_chips.*
 import kotlinx.android.synthetic.main.fragment_pod.*
 import kotlinx.android.synthetic.main.fragment_pod.chip_of_days
 import ru.gravitana.gvd_universe.main.view.BottomNavigationDrawerFragment
 import ru.gravitana.gvd_universe.main.view.MainActivity
 import ru.gravitana.gvd_universe.utils.EquilateralImageView
 import ru.gravitana.gvd_universe.R
-import ru.gravitana.gvd_universe.chips.view.ChipsFragment
+import ru.gravitana.gvd_universe.settings.view.SettingsFragment
 import ru.gravitana.gvd_universe.databinding.FragmentPodBinding
 import ru.gravitana.gvd_universe.pod.model.PictureOfTheDayData
 import ru.gravitana.gvd_universe.pod.viewmodel.PictureOfTheDayViewModel
@@ -57,7 +56,7 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setBottomSheetBehavior(binding.bottomSheetLayout.bottomSheetContainer)
+        setBottomSheetBehavior(binding.bottomSheet.bottomSheetContainer)
         setBottomAppBar(view)
         chip_of_days.setOnCheckedChangeListener { chipGroup, position ->
             chip_of_days.findViewById<Chip>(position)?.let {
@@ -72,9 +71,10 @@ class PictureOfTheDayFragment : Fragment() {
         // TODO придумать как вычесть дни из даты
         Toast.makeText(context, "Показать ${dateForPicture}", Toast.LENGTH_SHORT).show()
         return when (days) {
+            0 -> "2021-07-16" //formatter.format(date)
             1 -> "2021-07-12"
             2 -> "2021-07-11"
-            else -> "2021-07-14"
+            else -> formatter.format(date)
         }
     }
 
@@ -86,7 +86,7 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
-            R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, ChipsFragment())?.addToBackStack(null)?.commit()
+            R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, SettingsFragment())?.addToBackStack(null)?.commit()
             R.id.app_bar_search -> activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, WikiFragment())?.addToBackStack(null)?.commit()
             android.R.id.home -> {
                 activity?.let {
@@ -141,8 +141,8 @@ class PictureOfTheDayFragment : Fragment() {
                         error(R.drawable.ic_error)
                         placeholder(R.drawable.ic_no_photo_vector)
                     }
-                    binding.bottomSheetLayout.bottomSheetDescriptionHeader.setText(serverResponseData.title)
-                    binding.bottomSheetLayout.bottomSheetDescription.setText(serverResponseData.explanation)
+                    binding.bottomSheet.bottomSheetDescriptionHeader.setText(serverResponseData.title)
+                    binding.bottomSheet.bottomSheetDescription.setText(serverResponseData.explanation)
                 }
             }
             is PictureOfTheDayData.Loading -> {

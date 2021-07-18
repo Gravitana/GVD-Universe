@@ -1,10 +1,40 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.GVDUniverse" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/teal_200</item>
-        <!-- Customize your theme here. -->
+    <style name="GVDUniverse" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">?themeColorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorSecondaryVariant">#0039CB</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorError">#F44336</item>
+        <item name="colorOnError">#FFFFFF</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#212121</item>
+<!--        <item name="android:colorBackground">@color/very_light_green</item>-->
+        <item name="android:colorBackground">?themeColorBackground</item>
+        <item name="colorOnBackground">#212121</item>
+        <item name="android:statusBarColor">?colorPrimaryDark</item>
+        <item name="android:navigationBarColor">?colorPrimaryDark</item>
+
     </style>
+
+    <style name="GVDUniverse.GreenTheme">
+        <item name="colorPrimaryDark">#3C8A3F</item>
+        <item name="colorAccent">@color/green_light</item>
+        <item name="textColorConnected">@color/green</item>
+        <item name="textColorDisConnected">@color/light_gray</item>
+        <item name="themeColorPrimary">@color/green</item>
+        <item name="themeColorBackground">@color/very_light_green</item>
+    </style>
+
+    <style name="GVDUniverse.PurpleTheme">
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/purple_200</item>
+        <item name="textColorConnected">@color/purple_500</item>
+        <item name="textColorDisConnected">@color/light_gray</item>
+        <item name="themeColorPrimary">@color/purple_500</item>
+        <item name="themeColorBackground">@color/very_light_purple</item>
+    </style>
+
 </resources>

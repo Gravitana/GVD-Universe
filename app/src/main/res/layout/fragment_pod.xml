@@ -2,7 +2,8 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -11,21 +12,29 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp">
+            android:layout_height="match_parent">
 
-            <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+            <TextView
+                android:id="@+id/heading"
+                style="@style/heading_text_style"
+                android:text="@string/app_name"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/chips"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="heading" />
+
+            <LinearLayout
                 android:id="@+id/chips"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/heading"
                 app:layout_constraintBottom_toTopOf="@+id/image_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:context=".chips.view.ChipsFragment">
+                tools:context=".settings.view.SettingsFragment">
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chip_of_days"
@@ -71,7 +80,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <include
-        android:id="@+id/bottom_sheet_layout"
+        android:id="@+id/bottom_sheet"
         layout="@layout/bottom_sheet_layout" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
