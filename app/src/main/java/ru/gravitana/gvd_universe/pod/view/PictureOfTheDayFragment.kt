@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -36,9 +35,11 @@ class PictureOfTheDayFragment : Fragment() {
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
-    private val date = Date();
+    private val now = System.currentTimeMillis()
     private val formatter = SimpleDateFormat("yyyy-MM-dd")
-    private var dateForPicture: String = formatter.format(date)
+    private var daysAgo = 0
+
+    private fun getTargetDate(daysAgo: Int) = formatter.format(now - 86400000 * daysAgo)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,7 +52,7 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.getData(dateForPicture).observe(viewLifecycleOwner, Observer<PictureOfTheDayData> { renderData(it) })
+        viewModel.getData(getTargetDate(daysAgo)).observe(viewLifecycleOwner, { renderData(it) })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,21 +61,9 @@ class PictureOfTheDayFragment : Fragment() {
         setBottomAppBar(view)
         chip_of_days.setOnCheckedChangeListener { chipGroup, position ->
             chip_of_days.findViewById<Chip>(position)?.let {
-                val days_ago: Int = chip_of_days.childCount - it.id
-                dateForPicture = calculateDate(days_ago)
+                daysAgo = chip_of_days.childCount - it.id
                 onActivityCreated(savedInstanceState)
             }
-        }
-    }
-
-    private fun calculateDate(days: Int): String {
-        // TODO придумать как вычесть дни из даты
-        Toast.makeText(context, "Показать ${dateForPicture}", Toast.LENGTH_SHORT).show()
-        return when (days) {
-            0 -> "2021-07-16" //formatter.format(date)
-            1 -> "2021-07-12"
-            2 -> "2021-07-11"
-            else -> formatter.format(date)
         }
     }
 
