@@ -11,7 +11,9 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent40Alfa">#662962FF</color>
     <color name="color_gray">#66000000</color>
+    <color name="background">#FAFAFA</color>
     <color name="green">#4CAF50</color>
     <color name="green_dark">#009688</color>
     <color name="green_light">#8BC34A</color>
