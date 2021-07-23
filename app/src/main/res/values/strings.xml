@@ -10,9 +10,11 @@
     <string name="api">Фото планет</string>
     <string name="settings">Настройки</string>
     <string name="search">Поиск</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="two_days_ago">Позавчера</string>
     <string name="yesterday">Вчера</string>
     <string name="today">Сегодня</string>
+    <string name="earth">Земля</string>
+    <string name="mars">Марс</string>
+    <string name="weather">Погода</string>
 </resources>

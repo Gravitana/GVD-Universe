@@ -4,4 +4,6 @@
     <dimen name="heading_size">25sp</dimen>
     <dimen name="heading_margin_vertical">10dp</dimen>
     <dimen name="heading_padding">5dp</dimen>
+    <dimen name="api_tab_text_size">15sp</dimen>
+    <dimen name="api_tab_drawable_padding">10dp</dimen>
 </resources>
