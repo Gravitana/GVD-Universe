@@ -1,5 +1,6 @@
 package ru.gravitana.gvd_universe.api
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +9,8 @@ import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_api.*
 import ru.gravitana.gvd_universe.R
+import ru.gravitana.gvd_universe.main.CURRENT_THEME_KEY
+import ru.gravitana.gvd_universe.main.DEFAULT_THEME_ID
 
 class ApiActivity : AppCompatActivity() {
 
@@ -19,6 +22,9 @@ class ApiActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setTheme(this.getPreferences(Context.MODE_PRIVATE).getInt(CURRENT_THEME_KEY, DEFAULT_THEME_ID))
+
         setContentView(R.layout.activity_api)
         view_pager.adapter = ViewPagerAdapter(supportFragmentManager)
         tab_layout.setupWithViewPager(view_pager)

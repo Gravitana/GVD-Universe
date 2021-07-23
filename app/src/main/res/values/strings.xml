@@ -17,4 +17,8 @@
     <string name="earth">Земля</string>
     <string name="mars">Марс</string>
     <string name="weather">Погода</string>
+    <string name="examples">Примеры</string>
+    <string name="сhoose_theme">Выбор темы</string>
+    <string name="greenTheme">Зелёная</string>
+    <string name="purpleTheme">Пурпурная</string>
 </resources>
