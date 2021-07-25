@@ -1,5 +1,6 @@
 package ru.gravitana.gvd_universe.pod.view
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.*
@@ -17,6 +18,7 @@ import ru.gravitana.gvd_universe.main.view.BottomNavigationDrawerFragment
 import ru.gravitana.gvd_universe.main.view.MainActivity
 import ru.gravitana.gvd_universe.utils.EquilateralImageView
 import ru.gravitana.gvd_universe.R
+import ru.gravitana.gvd_universe.api.ApiActivity
 import ru.gravitana.gvd_universe.settings.view.SettingsFragment
 import ru.gravitana.gvd_universe.databinding.FragmentPodBinding
 import ru.gravitana.gvd_universe.pod.model.PictureOfTheDayData
@@ -74,7 +76,7 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
+            R.id.app_bar_api -> startActivity(Intent(activity, ApiActivity::class.java))
             R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, SettingsFragment())?.addToBackStack(null)?.commit()
             R.id.app_bar_search -> activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, WikiFragment())?.addToBackStack(null)?.commit()
             android.R.id.home -> {
