@@ -23,6 +23,7 @@ import ru.gravitana.gvd_universe.settings.view.SettingsFragment
 import ru.gravitana.gvd_universe.databinding.FragmentPodBinding
 import ru.gravitana.gvd_universe.pod.model.PictureOfTheDayData
 import ru.gravitana.gvd_universe.pod.viewmodel.PictureOfTheDayViewModel
+import ru.gravitana.gvd_universe.settings.view.ExamplesFragment
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -78,6 +79,7 @@ class PictureOfTheDayFragment : Fragment() {
         when (item.itemId) {
             R.id.app_bar_api -> startActivity(Intent(activity, ApiActivity::class.java))
             R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, SettingsFragment())?.addToBackStack(null)?.commit()
+            R.id.app_bar_examples -> activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, ExamplesFragment())?.addToBackStack(null)?.commit()
             R.id.app_bar_search -> activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, WikiFragment())?.addToBackStack(null)?.commit()
             android.R.id.home -> {
                 activity?.let {

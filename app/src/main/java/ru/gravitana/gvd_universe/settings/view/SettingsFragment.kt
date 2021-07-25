@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.fragment_settings.*
 import ru.gravitana.gvd_universe.R
@@ -35,14 +34,6 @@ class SettingsFragment : Fragment() {
                     .putInt(CURRENT_THEME_KEY, themeId)
                     .apply()
             }
-        }
-
-        chip_close.setOnCloseIconClickListener {
-            Toast.makeText(
-                context,
-                "Close is Clicked",
-                Toast.LENGTH_SHORT
-            ).show()
         }
     }
 
