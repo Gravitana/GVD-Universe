@@ -8,17 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ru.gravitana.gvd_universe.databinding.FragmentWikiBinding
+import ru.gravitana.gvd_universe.databinding.FragmentWikiStartBinding
 
 class WikiFragment : Fragment() {
 
-    private var _binding: FragmentWikiBinding? = null
+    private var _binding: FragmentWikiStartBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentWikiBinding.inflate(inflater, container, false)
+        _binding = FragmentWikiStartBinding.inflate(inflater, container, false)
         return binding.root
     }
 
