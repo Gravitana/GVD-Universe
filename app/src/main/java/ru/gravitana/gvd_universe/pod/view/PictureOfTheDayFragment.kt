@@ -6,21 +6,22 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.fragment_pod.*
+import kotlinx.android.synthetic.main.fragment_pod.bottom_app_bar
 import kotlinx.android.synthetic.main.fragment_pod.chip_of_days
+import kotlinx.android.synthetic.main.fragment_pod.fab
+import kotlinx.android.synthetic.main.fragment_pod_coordinator.*
 import ru.gravitana.gvd_universe.main.view.BottomNavigationDrawerFragment
 import ru.gravitana.gvd_universe.main.view.MainActivity
 import ru.gravitana.gvd_universe.utils.EquilateralImageView
 import ru.gravitana.gvd_universe.R
 import ru.gravitana.gvd_universe.api.ApiActivity
 import ru.gravitana.gvd_universe.settings.view.SettingsFragment
-import ru.gravitana.gvd_universe.databinding.FragmentPodBinding
+import ru.gravitana.gvd_universe.databinding.FragmentPodCoordinatorBinding
 import ru.gravitana.gvd_universe.pod.model.PictureOfTheDayData
 import ru.gravitana.gvd_universe.pod.viewmodel.PictureOfTheDayViewModel
 import ru.gravitana.gvd_universe.settings.view.ExamplesFragment
@@ -29,14 +30,12 @@ import java.util.*
 
 class PictureOfTheDayFragment : Fragment() {
 
-    private var _binding: FragmentPodBinding? = null
+    private var _binding: FragmentPodCoordinatorBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: PictureOfTheDayViewModel by lazy {
         ViewModelProvider(this).get(PictureOfTheDayViewModel::class.java)
     }
-
-    private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
     private val now = System.currentTimeMillis()
     private val formatter = SimpleDateFormat("yyyy-MM-dd")
@@ -49,7 +48,7 @@ class PictureOfTheDayFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPodBinding.inflate(inflater, container, false)
+        _binding = FragmentPodCoordinatorBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -60,7 +59,6 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setBottomSheetBehavior(binding.bottomSheet.bottomSheetContainer)
         setBottomAppBar(view)
         chip_of_days.setOnCheckedChangeListener { chipGroup, position ->
             chip_of_days.findViewById<Chip>(position)?.let {
@@ -112,11 +110,6 @@ class PictureOfTheDayFragment : Fragment() {
         }
     }
 
-    private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
-        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-    }
-
     private fun renderData(data: PictureOfTheDayData) {
 
         val imageView = requireView().findViewById(R.id.image_view) as EquilateralImageView
@@ -134,8 +127,9 @@ class PictureOfTheDayFragment : Fragment() {
                         error(R.drawable.ic_error)
                         placeholder(R.drawable.ic_no_photo_vector)
                     }
-                    binding.bottomSheet.bottomSheetDescriptionHeader.setText(serverResponseData.title)
-                    binding.bottomSheet.bottomSheetDescription.setText(serverResponseData.explanation)
+
+                    podDescriptionTitle.setText(serverResponseData.title)
+                    podDescription.setText(serverResponseData.explanation)
                 }
             }
             is PictureOfTheDayData.Loading -> {
