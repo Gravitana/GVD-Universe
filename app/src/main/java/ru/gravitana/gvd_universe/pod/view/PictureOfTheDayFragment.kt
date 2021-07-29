@@ -8,6 +8,8 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.transition.Slide
+import androidx.transition.TransitionManager
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.chip.Chip
@@ -16,13 +18,16 @@ import kotlinx.android.synthetic.main.fragment_pod.bottom_app_bar
 import kotlinx.android.synthetic.main.fragment_pod.chip_of_days
 import kotlinx.android.synthetic.main.fragment_pod.fab
 import kotlinx.android.synthetic.main.fragment_pod_coordinator.*
+import kotlinx.android.synthetic.main.fragment_pod_coordinator.podDescription
+import kotlinx.android.synthetic.main.fragment_pod_coordinator.podDescriptionTitle
+import kotlinx.android.synthetic.main.fragment_pod_start.*
 import ru.gravitana.gvd_universe.main.view.BottomNavigationDrawerFragment
 import ru.gravitana.gvd_universe.main.view.MainActivity
 import ru.gravitana.gvd_universe.utils.EquilateralImageView
 import ru.gravitana.gvd_universe.R
 import ru.gravitana.gvd_universe.api.ApiActivity
 import ru.gravitana.gvd_universe.settings.view.SettingsFragment
-import ru.gravitana.gvd_universe.databinding.FragmentPodStartBinding
+import ru.gravitana.gvd_universe.databinding.FragmentPodBinding
 import ru.gravitana.gvd_universe.pod.model.PictureOfTheDayData
 import ru.gravitana.gvd_universe.pod.viewmodel.PictureOfTheDayViewModel
 import ru.gravitana.gvd_universe.settings.view.ExamplesFragment
@@ -31,7 +36,7 @@ import java.util.*
 
 class PictureOfTheDayFragment : Fragment() {
 
-    private var _binding: FragmentPodStartBinding? = null
+    private var _binding: FragmentPodBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: PictureOfTheDayViewModel by lazy {
@@ -42,6 +47,8 @@ class PictureOfTheDayFragment : Fragment() {
     private val formatter = SimpleDateFormat("yyyy-MM-dd")
     private var daysAgo = 0
 
+    private var textIsVisible = false
+
     private fun getTargetDate(daysAgo: Int) = formatter.format(now - 86400000 * daysAgo)
 
     override fun onCreateView(
@@ -49,7 +56,7 @@ class PictureOfTheDayFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPodStartBinding.inflate(inflater, container, false)
+        _binding = FragmentPodBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -61,9 +68,9 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setBottomAppBar(view)
-        binding.inputLayout.setEndIconOnClickListener {
+        wiki_input_layout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
+                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.wikiInputEditText.text.toString()}")
             })
         }
         chip_of_days.setOnCheckedChangeListener { chipGroup, position ->
@@ -71,6 +78,12 @@ class PictureOfTheDayFragment : Fragment() {
                 daysAgo = chip_of_days.childCount - it.id
                 onActivityCreated(savedInstanceState)
             }
+        }
+        fabSecond.setOnClickListener {
+            TransitionManager.beginDelayedTransition(transitions_container, Slide(Gravity.START))
+            textIsVisible = !textIsVisible
+            wiki_input_layout.visibility = if (textIsVisible) View.VISIBLE else View.GONE
+            wiki_input_edit_text.setText(podDescriptionTitle.text.toString())
         }
     }
 
