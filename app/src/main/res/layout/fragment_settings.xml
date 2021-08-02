@@ -10,21 +10,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:ignore="UselessParent">
+            android:layout_height="match_parent">
+
 
             <TextView
                 android:id="@+id/heading"
-                style="@style/heading_text_style"
-                android:text="@string/app_name"
-                tools:text="heading" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.7"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/colorAccent40Alfa"
+                android:padding="@dimen/heading_padding"
+                android:text="@string/settings"
+                tools:text="settings" />
 
             <TextView
+                android:id="@+id/themeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/heading"
                 android:layout_margin="8dp"
                 android:text="@string/сhoose_theme"
                 android:textSize="18sp" />
@@ -33,6 +45,9 @@
                 android:id="@+id/chooseThemeGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/themeTitle"
                 app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
@@ -49,6 +64,55 @@
                     android:layout_height="wrap_content"
                     android:text="@string/purpleTheme" />
             </com.google.android.material.chip.ChipGroup>
-        </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/someTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chooseThemeGroup"
+                android:layout_margin="8dp"
+                android:text="@string/examples"
+                android:textSize="18sp" />
+
+
+            <Button
+                android:id="@+id/view1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View 1"
+                app:layout_constraintRight_toLeftOf="@+id/view2"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/someTitle" />
+
+            <Button
+                android:id="@+id/view2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View 2"
+                app:layout_constraintRight_toLeftOf="@+id/view3"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintLeft_toRightOf="@+id/view1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/someTitle" />
+
+            <Button
+                android:id="@+id/view3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View 3"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintLeft_toRightOf="@+id/view2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/someTitle" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </FrameLayout>
