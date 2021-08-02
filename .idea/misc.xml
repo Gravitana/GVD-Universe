@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/GVD_projects/Android/GVD-Universe/app/src/main/res/layout/fragment_pod.xml" value="0.18515704154002027" />
+        <entry key="..\:/GVD_projects/Android/GVD-Universe/app/src/main/res/layout/fragment_pod_coordinator.xml" value="0.18515704154002027" />
+        <entry key="..\:/GVD_projects/Android/GVD-Universe/app/src/main/res/layout/fragment_pod_start.xml" value="0.2647887323943662" />
+        <entry key="..\:/GVD_projects/Android/GVD-Universe/app/src/main/res/layout/fragment_wiki.xml" value="0.18515704154002027" />
+        <entry key="..\:/GVD_projects/Android/GVD-Universe/app/src/main/res/layout/fragment_wiki_start.xml" value="0.27898550724637683" />
+        <entry key="..\:/GVD_projects/Android/GVD-Universe/app/src/main/res/xml/motion_scene.xml" value="0.27898550724637683" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

@@ -11,5 +11,23 @@
         <item name="android:textColor">?colorAccent</item>
     </style>
 
+    <style name="pod_text_style">
+        <item name="android:textSize">@dimen/pod_text_size</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:layout_marginBottom">50dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+    </style>
+
+    <style name="pod_title_style">
+        <item name="android:textSize">@dimen/pod_text_size</item>
+        <item name="android:layout_margin">@dimen/default_margin</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#000</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
 </resources>

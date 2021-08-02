@@ -1,19 +1,26 @@
 package ru.gravitana.gvd_universe.pod.view
 
 import android.content.Intent
+import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.transition.Slide
+import androidx.transition.TransitionManager
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.fragment_pod.*
+import kotlinx.android.synthetic.main.fragment_pod.bottom_app_bar
 import kotlinx.android.synthetic.main.fragment_pod.chip_of_days
+import kotlinx.android.synthetic.main.fragment_pod.fab
+import kotlinx.android.synthetic.main.fragment_pod_coordinator.*
+import kotlinx.android.synthetic.main.fragment_pod_coordinator.podDescription
+import kotlinx.android.synthetic.main.fragment_pod_coordinator.podDescriptionTitle
+import kotlinx.android.synthetic.main.fragment_pod_start.*
 import ru.gravitana.gvd_universe.main.view.BottomNavigationDrawerFragment
 import ru.gravitana.gvd_universe.main.view.MainActivity
 import ru.gravitana.gvd_universe.utils.EquilateralImageView
@@ -36,11 +43,11 @@ class PictureOfTheDayFragment : Fragment() {
         ViewModelProvider(this).get(PictureOfTheDayViewModel::class.java)
     }
 
-    private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
-
     private val now = System.currentTimeMillis()
     private val formatter = SimpleDateFormat("yyyy-MM-dd")
     private var daysAgo = 0
+
+    private var textIsVisible = false
 
     private fun getTargetDate(daysAgo: Int) = formatter.format(now - 86400000 * daysAgo)
 
@@ -60,13 +67,23 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setBottomSheetBehavior(binding.bottomSheet.bottomSheetContainer)
         setBottomAppBar(view)
+        wiki_input_layout.setEndIconOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.wikiInputEditText.text.toString()}")
+            })
+        }
         chip_of_days.setOnCheckedChangeListener { chipGroup, position ->
             chip_of_days.findViewById<Chip>(position)?.let {
                 daysAgo = chip_of_days.childCount - it.id
                 onActivityCreated(savedInstanceState)
             }
+        }
+        fabSecond.setOnClickListener {
+            TransitionManager.beginDelayedTransition(transitions_container, Slide(Gravity.START))
+            textIsVisible = !textIsVisible
+            wiki_input_layout.visibility = if (textIsVisible) View.VISIBLE else View.GONE
+            wiki_input_edit_text.setText(podDescriptionTitle.text.toString())
         }
     }
 
@@ -112,11 +129,6 @@ class PictureOfTheDayFragment : Fragment() {
         }
     }
 
-    private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
-        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-    }
-
     private fun renderData(data: PictureOfTheDayData) {
 
         val imageView = requireView().findViewById(R.id.image_view) as EquilateralImageView
@@ -134,8 +146,9 @@ class PictureOfTheDayFragment : Fragment() {
                         error(R.drawable.ic_error)
                         placeholder(R.drawable.ic_no_photo_vector)
                     }
-                    binding.bottomSheet.bottomSheetDescriptionHeader.setText(serverResponseData.title)
-                    binding.bottomSheet.bottomSheetDescription.setText(serverResponseData.explanation)
+
+                    podDescriptionTitle.setText(serverResponseData.title)
+                    podDescription.setText(serverResponseData.explanation)
                 }
             }
             is PictureOfTheDayData.Loading -> {
