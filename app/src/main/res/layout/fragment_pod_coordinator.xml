@@ -124,6 +124,7 @@
 
                 </androidx.appcompat.widget.Toolbar>
             </androidx.constraintlayout.motion.widget.MotionLayout>
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

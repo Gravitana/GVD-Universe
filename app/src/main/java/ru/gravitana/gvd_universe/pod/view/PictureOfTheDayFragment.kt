@@ -18,16 +18,13 @@ import kotlinx.android.synthetic.main.fragment_pod.bottom_app_bar
 import kotlinx.android.synthetic.main.fragment_pod.chip_of_days
 import kotlinx.android.synthetic.main.fragment_pod.fab
 import kotlinx.android.synthetic.main.fragment_pod_coordinator.*
-import kotlinx.android.synthetic.main.fragment_pod_coordinator.podDescription
-import kotlinx.android.synthetic.main.fragment_pod_coordinator.podDescriptionTitle
-import kotlinx.android.synthetic.main.fragment_pod_start.*
 import ru.gravitana.gvd_universe.main.view.BottomNavigationDrawerFragment
 import ru.gravitana.gvd_universe.main.view.MainActivity
 import ru.gravitana.gvd_universe.utils.EquilateralImageView
 import ru.gravitana.gvd_universe.R
 import ru.gravitana.gvd_universe.api.ApiActivity
 import ru.gravitana.gvd_universe.settings.view.SettingsFragment
-import ru.gravitana.gvd_universe.databinding.FragmentPodBinding
+import ru.gravitana.gvd_universe.databinding.FragmentPodCoordinatorBinding
 import ru.gravitana.gvd_universe.pod.model.PictureOfTheDayData
 import ru.gravitana.gvd_universe.pod.viewmodel.PictureOfTheDayViewModel
 import ru.gravitana.gvd_universe.settings.view.ExamplesFragment
@@ -36,7 +33,7 @@ import java.util.*
 
 class PictureOfTheDayFragment : Fragment() {
 
-    private var _binding: FragmentPodBinding? = null
+    private var _binding: FragmentPodCoordinatorBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: PictureOfTheDayViewModel by lazy {
@@ -56,7 +53,7 @@ class PictureOfTheDayFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPodBinding.inflate(inflater, container, false)
+        _binding = FragmentPodCoordinatorBinding.inflate(inflater, container, false)
         return binding.root
     }
 
