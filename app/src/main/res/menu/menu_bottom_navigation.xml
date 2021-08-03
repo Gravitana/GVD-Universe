@@ -3,11 +3,16 @@
     <group android:checkableBehavior="none">
         <item
             android:id="@+id/navigation_one"
-            android:icon="@drawable/ic_archive"
-            android:title="На экран 1" />
+            android:icon="@drawable/ic_system"
+            android:title="@string/notes" />
         <item
             android:id="@+id/navigation_two"
             android:icon="@drawable/ic_send"
             android:title="На экран 2" />
+        <item
+            android:id="@+id/navigation_three"
+            android:icon="@drawable/ic_wikipedia"
+            android:title="На экран 3" />
+
     </group>
 </menu>
