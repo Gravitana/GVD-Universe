@@ -11,7 +11,7 @@
         <item name="colorOnError">#FFFFFF</item>
         <item name="colorSurface">#FFFFFF</item>
         <item name="colorOnSurface">#212121</item>
-<!--        <item name="android:colorBackground">@color/very_light_green</item>-->
+        <!--        <item name="android:colorBackground">@color/very_light_green</item>-->
         <item name="android:colorBackground">?themeColorBackground</item>
         <item name="colorOnBackground">#212121</item>
         <item name="android:statusBarColor">?colorPrimaryDark</item>
@@ -36,5 +36,14 @@
         <item name="themeColorPrimary">@color/purple_500</item>
         <item name="themeColorBackground">@color/very_light_purple</item>
     </style>
+
+    <style name="GVDUniverse.PurpleTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="GVDUniverse.PurpleTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="GVDUniverse.PurpleTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
